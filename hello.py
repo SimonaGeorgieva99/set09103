@@ -1,13 +1,20 @@
-from flask import Flask
+from flask import Flask, url_for
 app = Flask(__name__)
 
 @app.route("/")
 def root():
-	return "The default, 'root' route"
+	return "Default root. Go to /hello or /goodbye or /img"
 
 @app.route("/hello/")
 def hello():
 	return "Hello Napier!!!"
+
+@app.route("/img/")
+def img():
+	start = '<img src="'
+	url = url_for('static', filename='vmask.jpg')
+	end = '">'
+	return start+url+end, 200
 
 @app.route("/goodbye/")
 def goodbye():
